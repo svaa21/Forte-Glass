@@ -1,0 +1,43 @@
+---
+import Instagram from '../assets/logos/instagram.svg'
+import Facebook from '../assets/logos/facebook.svg'
+import X from '../assets/logos/x.svg'
+import Menu from '../assets/icons/menu.svg'
+---
+
+<header>
+  <div class='flex justify-between items-center px-4 py-4 container mx-auto'>
+    <div class='flex items-center'>
+      <img
+        src='/logo.png'
+        class='w-[100px] min-w-[100px] lg:w-[120px]'
+        alt='Forte Glass Logo'
+      />
+      <div class='hidden lg:block w-0.5 h-10 bg-black mx-8'></div>
+      <div class='flex gap-x-8 font-medium'>
+        <a href='#' class='hidden lg:block'>SERVICIOS</a>
+        <a href='#' class='hidden lg:block'>PRODUCTOS COMPLEMENTARIOS</a>
+        <a href='#' class='hidden lg:block'>NOSOTROS</a>
+        <a href='#' class='hidden lg:block'>CONTACTO</a>
+      </div>
+    </div>
+    <div class='flex gap-x-4 items-center'>
+      <div class='flex gap-x-2'>
+        <a href='https://www.instagram.com/' target='_blank'>
+          <Instagram
+            class='size-7 lg:size-8 hover:scale-120 transition-all hover:text-stone-500'
+          />
+        </a>
+        <a href='https://www.facebook.com/' target='_blank'>
+          <Facebook
+            class='size-7 lg:size-8 hover:scale-120 transition-all hover:text-stone-500'
+          />
+        </a>
+        <a href='https://www.x.com/' target='_blank'>
+          <X class='size-7 lg:size-8 hover:scale-120 transition-all hover:text-stone-500' />
+        </a>
+      </div>
+      <Menu class='lg:hidden size-7' />
+    </div>
+  </div>
+</header>
