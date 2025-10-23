@@ -1,0 +1,75 @@
+---
+import Close from '@/assets/icons/close.svg'
+---
+
+<button id='sidebar-button' class='lg:hidden cursor-pointer'>
+  <slot />
+</button>
+
+<div
+  id='sidebar-overlay'
+  class='fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden'
+>
+</div>
+
+<aside
+  id='sidebar'
+  class='fixed top-0 left-0 w-80 h-screen bg-white border-r border-neutral-200 -translate-x-full transition-transform duration-300 lg:hidden z-50'
+>
+  <div class='p-4 flex justify-between bg-black'>
+    <h3 class='font-medium text-base text-white'>Menu Principal</h3>
+    <button id='sidebar-close-button' class='text-white cursor-pointer'>
+      <Close />
+    </button>
+  </div>
+  <nav>
+    <ul>
+      <a href='#'>
+        <li
+          class='px-4 py-4 border-b border-neutral-400 hover:bg-neutral-200 transition-colors'
+        >
+          Servicios
+        </li>
+      </a>
+      <a href='#'>
+        <li
+          class='px-4 py-4 border-b border-neutral-400 hover:bg-neutral-200 transition-colors'
+        >
+          Productos Complementarios
+        </li>
+      </a>
+      <a href='#'>
+        <li
+          class='px-4 py-4 border-b border-neutral-400 hover:bg-neutral-200 transition-colors'
+        >
+          Nosotros
+        </li>
+      </a>
+      <a href='#'>
+        <li
+          class='px-4 py-4 border-b border-neutral-400 hover:bg-neutral-200 transition-colors'
+        >
+          Contacto
+        </li>
+      </a>
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('sidebar')
+  const overlay = document.getElementById('sidebar-overlay')
+  const openBtn = document.getElementById('sidebar-button')
+  const closeBtn = document.getElementById('sidebar-close-button')
+
+  function toggleSidebar(show: boolean) {
+    const active = show === true
+    sidebar?.classList.toggle('-translate-x-full', !active)
+    overlay?.classList.toggle('opacity-0', !active)
+    overlay?.classList.toggle('pointer-events-none', !active)
+  }
+
+  openBtn?.addEventListener('click', () => toggleSidebar(true))
+  closeBtn?.addEventListener('click', () => toggleSidebar(false))
+  overlay?.addEventListener('click', () => toggleSidebar(false))
+</script>
