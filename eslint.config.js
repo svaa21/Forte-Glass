@@ -5,6 +5,7 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   {
     rules: {
+      'no-console': 'warn',
       semi: ['error', 'never'],
       indent: ['error', 2],
       quotes: ['error', 'single'],

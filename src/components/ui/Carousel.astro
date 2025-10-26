@@ -1,0 +1,94 @@
+---
+import Left from '@/assets/icons/left.svg'
+import Right from '@/assets/icons/right.svg'
+
+const images = [
+  {
+    src: 'test/1.jpg',
+    title: 'ACCESORIOS'
+  },
+  {
+    src: 'test/2.jpg',
+    title: 'PARABRISAS'
+  },
+  {
+    src: 'test/3.jpg',
+    title: 'AUTOPARTES'
+  },
+  {
+    src: 'test/4.jpg',
+    title: 'OTHER'
+  },
+  {
+    src: 'test/5.jpg',
+    title: 'OTHER'
+  }
+]
+---
+
+<div class='flex items-center justify-center gap-x-8'>
+  <!-- Botón izquierda -->
+  <button id='prev' class='text-3xl font-bold text-red-700'>
+    <Left class='scale-y-[2]' />
+  </button>
+  <!-- Carrusel visible -->
+  <div
+    id='carousel'
+    class='flex w-[300px] overflow-hidden md:w-[600px] lg:w-[900px]'
+  >
+    <div
+      id='track'
+      class='flex space-x-4 transition-transform duration-500 ease-in-out'
+    >
+      {
+        images.map(image => (
+          <div class="relative w-[300px]">
+            <img class='w-full h-[400px] object-cover' src={image.src} alt={image.title} />
+            <p class="absolute top-0 left-0 text-center text-neutral-200 font-medium w-full bg-primary-800/80 py-4">{image.title}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Botón derecha -->
+  <button id='next' class='text-3xl font-bold text-red-700'>
+    <Right class='scale-y-[2]' />
+  </button>
+</div>
+
+<script>
+  const track = document.getElementById('track') as HTMLDivElement
+  const prev = document.getElementById('prev') as HTMLButtonElement
+  const next = document.getElementById('next') as HTMLButtonElement
+
+  const itemWidth = 300 + 16 // Ancho del item + margin
+  let index = 0
+
+  function visibleCount() {
+    if (window.innerWidth >= 1024) return 3
+    if (window.innerWidth >= 768) return 2
+    return 1
+  }
+
+  function updatePosition() {
+    const offset = index * itemWidth
+    track.style.transform = `translateX(-${offset}px)`
+  }
+
+  next.onclick = () => {
+    const visible = visibleCount()
+    const total = track.children.length
+    if (index < total - visible) {
+      index++
+      updatePosition()
+    }
+  }
+
+  prev.onclick = () => {
+    if (index > 0) {
+      index--
+      updatePosition()
+    }
+  }
+</script>
